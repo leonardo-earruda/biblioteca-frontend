@@ -1,0 +1,58 @@
+<div class='container-table'>
+  <mat-form-field class='input-position'>
+    <input matInput #filter placeholder='Pesquisar livros' />
+  </mat-form-field>
+
+  <button mat-raised-button color='accent' class='search-button-position' (click)='getFilter(filter)'>Pesquisar</button>
+
+  <button mat-raised-button color='accent' class='add-button-position' (click)='criarLivro()'>Adicionar</button>
+
+  <div class='container mat-elevation-z8' class='full-height'>
+    <mat-table matSort class='mat-cell' #table [dataSource]='dataSource'>
+      <ng-container matColumnDef='titulo'>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Titulo</mat-header-cell>
+        >
+        <mat-cell *matCellDef='let row'>{{ row?.titulo }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef='dataPublicacao'>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Data de Publicação</mat-header-cell>
+        <mat-cell *matCellDef='let row'>{{ row?.dataPublicacao | date: 'dd/MM/yyyy' }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef='editora'>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Editora</mat-header-cell>
+        <mat-cell *matCellDef='let row'>{{ row?.editoraNome }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef='generoLiterario'>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Gênero Literário</mat-header-cell>
+        <mat-cell *matCellDef='let row'>{{ row?.generoLiterarioNome }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef='isbn'>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>ISBN</mat-header-cell>
+        <mat-cell *matCellDef='let row'>{{ row?.isbn }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef='actions'>
+        <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+
+        <mat-cell *matCellDef='let row; let i = index'>
+          <button mat-icon-button color='warn' (click)='editarLivro(row)'>
+            <mat-icon aria-label='Edit'>edit</mat-icon>
+          </button>
+
+          <button mat-icon-button color='warn' (click)='excluirLivro(row)'>
+            <mat-icon aria-label='Delete'>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef='displayedColumns'></mat-header-row>
+      <mat-row *matRowDef='let row; columns: displayedColumns'></mat-row>
+    </mat-table>
+    <app-table-counter [length]='dataSource.data.length'></app-table-counter>
+    <mat-paginator showFirstLastButtons></mat-paginator>
+  </div>
+</div>

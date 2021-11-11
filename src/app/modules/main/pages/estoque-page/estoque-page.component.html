@@ -1,0 +1,30 @@
+<mat-form-field class="input-position">
+  <mat-label>Pesquisar livro por título</mat-label>
+  <input matInput #filter placeholder="Ex. Mein Kampf" />
+</mat-form-field>
+
+<button mat-raised-button color="accent" class="search-button-position" (click)="getFilter(filter)">Pesquisar</button>
+
+<div class="container mat-elevation-z8 full-height">
+  <mat-table matSort class="mat-cell" [dataSource]="dataSource">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row?.id }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="livro.titulo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Titulo</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row?.livroTitulo }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="quantidadeDisponivel">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Quantidade Disponível</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row?.quantidadeDisponivel }} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+    <mat-paginator showFirstLastButtons></mat-paginator>
+  </mat-table>
+</div>

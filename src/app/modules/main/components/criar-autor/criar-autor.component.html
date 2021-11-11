@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>{{ isEditing ? 'Editar ' : 'Cadastrar' }}</h1>
+<form [formGroup]='formAutor'>
+  <div mat-dialog-content fxLayoutGap='20px'>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder='Nome' formControlName='nome' #nome class='campo-width' />
+        <mat-hint>{{ nome.value.length }}/50</mat-hint>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder='Nacionalidade' formControlName='nacionalidade' class='campo-width' />
+        <mat-hint>Nacionalidade</mat-hint>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input
+          matInput
+          [max]='maxDate'
+          [matDatepicker]='picker'
+          placeholder='Data de nascimento'
+          formControlName='dataNascimento'
+        />
+        <mat-datepicker-toggle matSuffix [for]='picker'></mat-datepicker-toggle>
+        <mat-hint>dd/mm/aa</mat-hint>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+<div mat-dialog-actions>
+  <button (click)='save()' mat-raised-button color='accent' [disabled]='formAutor.invalid' fxLayoutGap='20px'>
+    {{ isEditing ? 'Salvar' : 'Criar' }}
+  </button>
+  <button [mat-dialog-close]='true' mat-raised-button color='accent' fxLayoutGap='20px'>Cancelar</button>
+</div>

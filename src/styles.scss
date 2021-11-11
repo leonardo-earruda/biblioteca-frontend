@@ -1,0 +1,72 @@
+/* You can add global styles to this file, and also import other style files */
+@import './app/shared/styles/spacing.scss';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+@import '~@angular/material/theming';
+@include mat-core();
+$angular-primary: mat-palette($mat-gray, 800);
+$angular-accent: mat-palette($mat-gray, 300);
+$angular-warn: mat-palette($mat-red, 400);
+$angular-default-theme: mat-light-theme(
+    (
+      color: (
+        primary: $angular-primary,
+        accent: $angular-accent,
+        warn: $angular-warn,
+      ),
+    )
+);
+.light-mode {
+  @include angular-material-theme($angular-default-theme);
+}
+
+$angular-dark-theme: mat-dark-theme(
+    (
+      color: (
+        primary: $angular-primary,
+        accent: $angular-accent,
+        warn: $angular-warn,
+      ),
+    )
+);
+
+.dark-mode {
+  @include angular-material-color($angular-dark-theme);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+// Espaçamento dos botões
+
+.sem-clientes-position {
+  text-align: center;
+  padding-top: 30px;
+  font-size: 30px;
+}
+
+.full-height {
+  min-height: 100vh;
+}
+
+.input-position {
+  position: relative;
+  left: 20px;
+}
+
+.search-button-position {
+  position: relative;
+  left: 30px;
+}
+
+.add-button-position {
+  position: relative;
+  left: 40px;
+}

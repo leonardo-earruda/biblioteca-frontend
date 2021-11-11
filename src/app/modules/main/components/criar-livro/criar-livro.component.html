@@ -1,0 +1,81 @@
+<h1 mat-dialog-title>{{ isEditing ? 'Editar ' : 'Cadastrar' }}</h1>
+
+<form [formGroup]='formLivro'>
+  <div mat-dialog-content fxLayoutGap='20px'>
+    <mat-form-field>
+      <mat-label>Autores</mat-label>
+      <mat-select formControlName='autorId'>
+        <mat-option *ngFor='let autor of autores' [value]='autor.id'>
+          {{ autor.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Generos Literários</mat-label>
+      <mat-select formControlName='generoLiterarioId'>
+        <mat-option *ngFor='let generoLiterario of generosLiterarios' [value]='generoLiterario.id'>
+          {{ generoLiterario.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Editoras</mat-label>
+      <mat-select formControlName='editoraId'>
+        <mat-option *ngFor='let editora of editoras' [value]='editora.id'>
+          {{ editora.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Quantidade em Estoque</mat-label>
+      <input matInput placeholder='Quantidade em estoque' formControlName='quantidadeDisponivel' />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Título</mat-label>
+      <input matInput placeholder='Título' #titulo formControlName='titulo' />
+      <mat-hint>{{ titulo.value.length }}/50</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>ISBN</mat-label>
+      <input matInput placeholder='ISBN' formControlName='isbn' mask='000-00-000-0000' />
+      <mat-hint>ISBN</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]='picker'
+        [max]='maxDate'
+        placeholder='Data de Publicação'
+        formControlName='dataPublicacao'
+      />
+      <mat-datepicker-toggle matSuffix [for]='picker'></mat-datepicker-toggle>
+      <mat-hint>dd/mm/aa</mat-hint>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions fxLayoutGap='20px'>
+    <button mat-raised-button color='accent' (click)='save()' [disabled]='formLivro.invalid'>
+      {{ isEditing ? 'Salvar' : 'Criar' }}
+    </button>
+    <button mat-raised-button color='accent' (click)='fecharDialog()'>Cancelar</button>
+  </div>
+</form>

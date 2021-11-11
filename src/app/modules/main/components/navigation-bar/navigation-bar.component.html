@@ -1,0 +1,72 @@
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side">
+      <img class="logo-sidenav-icon cursor" src="assets/svg/book-icon.svg" (click)="goToWelcomePage()" />
+      <hr />
+      <div class='item-position hoverButton'>
+        <button mat-icon-button (click)="goTo('/clientes')">
+          <mat-icon>person_pin</mat-icon>
+          Clientes
+        </button>
+      </div>
+      <div class='item-position hoverButton'>
+        <button mat-icon-button (click)="goTo('/livros')">
+          <mat-icon>library_books</mat-icon>
+          Livros
+        </button>
+      </div>
+      <div class='item-position hoverButton'>
+        <button mat-icon-button (click)="goTo('/autores')">
+          <mat-icon> insert_emoticon</mat-icon>
+          Autores
+        </button>
+      </div>
+      <div class='item-position hoverButton'>
+        <button mat-icon-button (click)="goTo('/editoras')">
+          <mat-icon> format_quote</mat-icon>
+          Editoras
+        </button>
+      </div>
+      <div class='item-position hoverButton'>
+        <button mat-icon-button (click)="goTo('/generos-literarios')">
+          <mat-icon>brush</mat-icon>
+          Gêneros Literários
+        </button>
+      </div>
+      <div class='item-position hoverButton'>
+        <button mat-icon-button (click)="goTo('/locacoes')">
+          <mat-icon>markunread_mailbox</mat-icon>
+          Locações
+        </button>
+      </div>
+      <div class='item-position hoverButton'>
+        <button mat-icon-button (click)="goTo('/estoque')">
+          <mat-icon>view_list</mat-icon>
+          Estoque
+        </button>
+      </div>
+
+      <mat-slide-toggle
+        [formControl]='darkThemeToggleControl'
+        (change)='changeDarkModeClass()'
+        color='accent'
+        class='dark-theme-toggle-position'
+      >Modo noturno
+      </mat-slide-toggle
+      >
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <mat-icon class="hover-cursor-deslogar icon-align" [mat-dialog-close]="true" (click)="deslogar()"
+          >logout</mat-icon
+        >
+        <div class="position">
+          <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span>Gestão de bibliotecas</span>
+        </div>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+

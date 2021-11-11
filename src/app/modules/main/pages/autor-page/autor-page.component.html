@@ -1,0 +1,49 @@
+<div class="container-table">
+  <mat-form-field class="input-position">
+    <input matInput #filter placeholder="Pesquisar autores" />
+  </mat-form-field>
+
+  <button mat-raised-button color="accent" class="search-button-position" (click)="getFilter(filter)">Pesquisar</button>
+
+  <button mat-raised-button color="accent" class="add-button-position" (click)="criarAutor()">Adicionar</button>
+
+  <div class="full-height">
+    <mat-table matSort class="mat-cell" #table [dataSource]="dataSource">
+      <ng-container matColumnDef="nome">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Nome do Autor</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row?.nome }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="nacionalidade">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Nacionalidade</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row?.nacionalidade }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="dataNascimento">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Data de Nascimento</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row?.dataNascimento | date: 'dd/MM/yyyy' }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+
+        <mat-cell *matCellDef="let row; let i = index">
+          <button mat-icon-button color="warn" (click)="editarAutor(row)">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+          </button>
+
+          <button mat-icon-button color="warn" (click)="deletarAutor(row)">
+            <mat-icon aria-label="Delete">delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <app-table-counter [length]="dataSource.data.length"> </app-table-counter>
+    <mat-paginator showFirstLastButtons> </mat-paginator>
+  </div>
+</div>

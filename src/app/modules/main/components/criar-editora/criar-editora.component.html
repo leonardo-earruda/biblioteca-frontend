@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>{{ isEditing ? 'Editar ' : 'Cadastrar' }}</h1>
+<form [formGroup]='formEditora'>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input matInput placeholder='Nome' #nome formControlName='nome' />
+      <mat-hint>{{ nome.value.length }}/50</mat-hint>
+    </mat-form-field>
+  </div>
+</form>
+<div mat-dialog-actions>
+  <button mat-raised-button color='accent' (click)='save()' [disabled]='formEditora.invalid'>
+    {{ isEditing ? 'Editar ' : 'Cadastrar' }}
+  </button>
+  <button mat-raised-button color='accent' (click)='closeDialog()'>Cancelar</button>
+</div>

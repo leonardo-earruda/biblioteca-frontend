@@ -1,0 +1,56 @@
+.logo-sidenav-icon {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.hoverButton {
+  color: var(--color);
+  transition: 0.5s;
+
+  &:hover,
+  &:focus {
+    border-color: var(--hover);
+    color: rgb(130, 127, 129);
+  }
+}
+
+.item-position {
+  display: flex;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-top: 25px;
+}
+
+.dark-theme-toggle-position {
+  margin-left: 10px;
+  margin-top: 200px;
+}
+
+mat-sidenav {
+  width: 200px;
+  position: fixed;
+}
+
+.hover-cursor-deslogar {
+  cursor: pointer;
+}
+
+.icon-align {
+  position: relative;
+  left: 1200px;
+}
+
+.position {
+  position: relative;
+  left: -20px;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.item-spacing {
+  margin-left: 15px;
+}

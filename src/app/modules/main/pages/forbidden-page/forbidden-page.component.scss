@@ -1,0 +1,21 @@
+.img-style {
+  width: 200px;
+  height: 200px;
+}
+
+.container-403 {
+  flex-direction: column;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: #554e4e;
+}
+
+.warning-style {
+  font-family:'Times New Roman', Times, serif;
+  color: rgba(255, 255, 255, 0.912);
+  font-weight: bolder;
+  font-size: 15px;
+}

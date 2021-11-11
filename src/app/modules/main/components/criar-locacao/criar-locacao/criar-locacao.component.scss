@@ -1,0 +1,25 @@
+.icon-title-position {
+  position: relative;
+  top: 15px;
+  display: flex;
+}
+
+.section-position {
+  position: relative;
+  top: 22px;
+}
+
+.livros-alugados-position {
+  margin-top: 40px;
+}
+
+.inserir-livro-button-position {
+  position: relative;
+  top: 150px;
+  left: 345px;
+}
+
+.time-picker {
+  position: absolute;
+  z-index: 99999999;
+}

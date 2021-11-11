@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>{{ isEditing ? 'Editar ' : 'Cadastrar' }}</h1>
+<form [formGroup]='formGenero'>
+  <div mat-dialog-content fxLayoutGap='20px'>
+    <div fxFlex='100'>
+      <mat-form-field>
+        <input matInput placeholder='Gênero Literário' formControlName='nome' #nome class='campo-width' />
+        <mat-hint>{{ nome.value.length }}/50</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+<div mat-dialog-actions>
+  <button (click)='save()' mat-raised-button color='accent' fxLayoutGap='20px' [disabled]='formGenero.invalid'>
+    {{ isEditing ? 'Salvar' : 'Criar' }}
+  </button>
+  <button mat-raised-button color='accent' fxLayoutGap='20px' (click)='fecharDialog()'>Cancelar</button>
+</div>

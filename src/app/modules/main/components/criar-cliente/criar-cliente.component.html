@@ -1,0 +1,116 @@
+<h1 mat-dialog-title>{{ isEditing ? 'Editar ' : 'Cadastrar' }}</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]='formCliente'>
+    <section class='dados-pessoais'>
+      <div class='titulo-align'>
+        <mat-icon class='icon-align'>account_box</mat-icon>
+        <h3>Dados pessoais</h3>
+      </div>
+      <div fxLayoutGap='20px'>
+        <mat-form-field fxFlex='100'>
+          <input matInput placeholder='Nome' formControlName='nome' #nome class='campo-width' />
+          <mat-hint>{{ nome.value.length }}/100</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder='CPF' formControlName='cpf' class='campo-width' mask='000.000.000-00' />
+          <mat-hint>CPF</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            [matDatepicker]='picker'
+            [min]='minDate'
+            [max]='maxDate'
+            placeholder='Data de nascimento'
+            formControlName='dataNascimento'
+          />
+          <mat-datepicker-toggle matSuffix [for]='picker'></mat-datepicker-toggle>
+          <mat-hint>dd/mm/aa</mat-hint>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </section>
+
+    <section class='dados-de-contato'>
+      <div class='titulo-align'>
+        <mat-icon class='icon-align'>local_phone</mat-icon>
+        <h3>Dados de contato</h3>
+      </div>
+      <div formGroupName='telefone' fxLayoutGap='20px'>
+        <mat-form-field>
+          <mat-label>Tipo de telefone</mat-label>
+          <mat-select formControlName='tipoTelefone'>
+            <mat-option *ngFor='let tipoTelefone of tiposTelefones' [value]='tipoTelefone'>
+              {{ tipoTelefone }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder='DDD' formControlName='ddd' class='campo-width' />
+          <mat-hint>DDD</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder='Número de telefone'
+            formControlName='numero'
+            class='campo-width'
+            [mask]='telMask'
+          />
+          <mat-hint>Número de telefone</mat-hint>
+        </mat-form-field>
+      </div>
+    </section>
+
+    <section class='dados-endereco'>
+      <div class='titulo-align'>
+        <mat-icon class='icon-align'>place</mat-icon>
+        <h3>Dados de endereço</h3>
+      </div>
+      <div formGroupName='endereco' fxLayoutGap='20px'>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder='CEP'
+            formControlName='cep'
+            class='campo-width'
+            mask='00000-000'
+            #cep
+            (keydown.enter)='buscarCep(cep.value)'
+          />
+          <mat-hint>CEP</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder='Logradouro' formControlName='logradouro' class='campo-width' />
+          <mat-hint>Logradouro</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder='Cidade' formControlName='cidade' class='campo-width' />
+          <mat-hint>Cidade</mat-hint>
+        </mat-form-field>
+        <div fxLayoutGap='20px'>
+          <mat-form-field>
+            <input matInput placeholder='Estado' formControlName='estado' class='campo-width' />
+            <mat-hint>Estado</mat-hint>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder='Número' formControlName='numero' class='campo-width' />
+            <mat-hint>Número</mat-hint>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder='Complemento' formControlName='complemento' class='campo-width' />
+            <mat-hint>Complemento</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+    </section>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color='accent' (click)='save()' [disabled]='formCliente.invalid'>
+    {{ isEditing ? 'Salvar' : 'Criar' }}
+  </button>
+  <button mat-raised-button color='accent' (click)='closeDialog()'>Cancelar</button>
+</div>

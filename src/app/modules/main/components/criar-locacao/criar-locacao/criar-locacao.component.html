@@ -1,0 +1,93 @@
+<h1 mat-dialog-title>{{ 'Alugar' }}</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="formLocacao">
+    <div class="icon-title-position section-position">
+      <mat-icon> person_pin</mat-icon>
+      <h3>Dados do cliente</h3>
+    </div>
+    <div fxLayoutGap="20px">
+      <mat-form-field>
+        <input matInput placeholder="CPF" formControlName="cpf" class="campo-width" mask="000.000.000-00" />
+        <mat-hint>CPF</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Cliente</mat-label>
+        <input matInput placeholder="Nome do cliente" formControlName="clienteNome" />
+        <mat-hint>Cliente</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Data de nascimento</mat-label>
+        <input matInput placeholder="Data de nascimento" formControlName="clienteDataNascimento" />
+        <mat-hint>Data de nascimento</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div fxLayoutGap="20px" class="section-position">
+      <div class="icon-title-position">
+        <mat-icon> date_range</mat-icon>
+        <h3>Data de locação</h3>
+
+        <button
+          mat-mini-fab
+          class="inserir-livro-button-position"
+          color="accent"
+          (click)="inserirLivro()"
+          matTooltip="Insira um livro para locação"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div fxLayoutGap="20px">
+        <mat-form-field fxFlex="50">
+          <input
+            matInput
+            [ngxMatDatetimePicker]="picker"
+            placeholder="Escolha a data e hora"
+            formControlName="dataLocacao"
+            [min]="minDate"
+            [max]="maxDate"
+          />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker #picker color="warn"> </ngx-mat-datetime-picker>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50">
+          <input matInput placeholder="Data prevista de devolução" formControlName="dataPrevistaDevolucao" />
+          <mat-hint>dd/mm/aaaa hh:mm:ss</mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="icon-title-position livros-alugados-position">
+      <mat-icon>filter_list</mat-icon>
+      <h3>Livros alugados</h3>
+    </div>
+
+    <mat-table matSort [dataSource]="dataSource" class="mat-cell">
+      <ng-container matColumnDef="isbn">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ISBN</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row?.isbn }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="titulo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Título</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row?.titulo }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="autorNome">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Autor</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row?.autorNome }} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <mat-paginator showFirstLastButtons></mat-paginator>
+
+    <div fxLayoutGap="20px">
+      <button mat-raised-button color="accent" (click)="save()">Criar locação</button>
+      <button mat-raised-button color="accent" [mat-dialog-close]="true">Cancelar</button>
+    </div>
+  </form>
+</div>

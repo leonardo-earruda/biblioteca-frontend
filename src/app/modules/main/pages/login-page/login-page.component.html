@@ -1,0 +1,29 @@
+<div class="container-login">
+  <div fxLayout="column" fxLayoutAlign="space-evenly center">
+    <div class="wrap-login">
+      <span class="title">Bem-vindo</span>
+      <img class="icon-login" src="assets/svg/book-icon.svg" />
+      <form [formGroup]="loginForm">
+        <div class="input-email-position">
+          <mat-form-field fxFill="100">
+            <mat-label>Usuário/e-mail</mat-label>
+            <input matInput placeholder="Usuário/e-mail" formControlName="usuario" />
+            <mat-hint>Usuário</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="input-senha-position">
+          <mat-form-field fxFill="100">
+            <mat-label>Senha</mat-label>
+            <input matInput placeholder="Senha" formControlName="senha" [type]="hide ? 'password' : 'text'" />
+            <mat-hint>Senha</mat-hint>
+            <i matSuffix (click)="hide = !hide">
+              <mat-icon class="hide-password-hover">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </i>
+          </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary" class="login100-form-btn" (click)="logar()">Entrar</button>
+      </form>
+    </div>
+  </div>
+</div>
